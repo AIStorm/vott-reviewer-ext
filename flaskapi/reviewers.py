@@ -29,10 +29,10 @@ class CNTK(Resource):
     @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
     def post():
         id = str(uuid.uuid4())
-        fname = request.values.get("filename") or id
+        fname = request.values.get("filename") or (id+".jpg")
         image = Image.open(request.files['image'].stream)
 
-        image_base_name=fname+".jpg"
+        image_base_name=fname
 
         image=cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
